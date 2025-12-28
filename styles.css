@@ -205,6 +205,71 @@ body {
     font-size: 0.95rem;
 }
 
+/* ===== Shop Gallery Section ===== */
+.shop-gallery {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 1.5rem;
+    background: var(--light-bg);
+}
+
+.shop-gallery h2 {
+    font-size: 2.5rem;
+    color: var(--primary);
+    text-align: center;
+    margin-bottom: 0.5rem;
+}
+
+.gallery-grid-large {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.gallery-card {
+    background: var(--white);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.12);
+}
+
+.gallery-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    display: block;
+}
+
+.gallery-card h3 {
+    padding: 1rem;
+    color: var(--primary);
+    font-size: 1.05rem;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .gallery-grid-large {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 1rem;
+    }
+    
+    .gallery-card img {
+        height: 180px;
+    }
+    
+    .gallery-card h3 {
+        font-size: 0.95rem;
+        padding: 0.8rem;
+    }
+}
+
 
 
 /* ===== Shop Section ===== */
@@ -501,11 +566,12 @@ body {
 @media (max-width: 768px) {
     .hamburger {
         display: flex;
+        z-index: 100;
     }
 
     .nav-menu {
         position: absolute;
-        top: 70px;
+        top: 100%;
         left: 0;
         right: 0;
         background: linear-gradient(135deg, var(--primary) 0%, #006b99 100%);
@@ -513,24 +579,31 @@ body {
         gap: 0;
         max-height: 0;
         overflow: hidden;
-        transition: max-height 0.3s ease;
+        transition: max-height 0.4s ease;
         padding: 0;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        z-index: 99;
     }
 
     .nav-menu.active {
-        max-height: 300px;
-        padding: 1rem 0;
+        max-height: 600px;
+        padding: 0.5rem 0;
+    }
+
+    .nav-menu li {
+        width: 100%;
     }
 
     .nav-menu a {
         display: block;
-        padding: 1rem 2rem;
+        padding: 1.2rem 2rem;
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        border-bottom-color: transparent;
+        font-size: 1.05rem;
+        text-align: left;
     }
 
     .nav-menu a:hover {
-        background-color: rgba(255, 255, 255, 0.1);
+        background-color: rgba(255, 255, 255, 0.15);
         border-bottom-color: var(--accent);
     }
 
@@ -539,25 +612,83 @@ body {
         position: relative;
     }
 
-    .nav-menu {
-        width: 100%;
-    }
-
-    .nav-menu {
-        gap: 1rem;
-    }
-
-    .nav-menu a {
+    .logo {
         font-size: 0.9rem;
     }
 
     .hero {
-        padding: 60px 1rem;
-        min-height: 400px;
+        padding: 80px 1.5rem;
+        min-height: 350px;
     }
 
     .hero h1 {
+        font-size: 2.2rem;
+    }
+
+    .tagline {
+        font-size: 1.1rem;
+    }
+
+    .location {
+        font-size: 1rem;
+    }
+
+    .shop-gallery {
+        padding: 40px 1rem;
+    }
+
+    .shop-gallery h2 {
         font-size: 2rem;
+    }
+
+    .featured-products-section {
+        padding: 50px 1.5rem;
+    }
+
+    .featured-products-section h2 {
+        font-size: 2.2rem;
+    }
+
+    .section-intro {
+        font-size: 1.05rem;
+    }
+
+    .featured-grid-large {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .featured-large-card img {
+        height: 280px;
+    }
+
+    .about-section,
+    .contact-section {
+        padding: 50px 1.5rem;
+    }
+
+    .about-section h2,
+    .contact-section h2 {
+        font-size: 2rem;
+    }
+
+    .about-wrapper {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-content {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo {
+        font-size: 0.75rem;
+    }
+
+    .hero h1 {
+        font-size: 1.8rem;
     }
 
     .tagline {
@@ -568,33 +699,42 @@ body {
         font-size: 0.9rem;
     }
 
-    .shop-section,
-    .about-section,
-    .contact-section {
-        padding: 50px 1rem;
-    }
-
-    .shop-section h2,
-    .contact-section h2,
-    .about-section h2 {
+    .shop-gallery h2,
+    .featured-products-section h2 {
         font-size: 1.8rem;
     }
 
-    .about-wrapper {
+    .section-subtitle,
+    .section-intro {
+        font-size: 0.95rem;
+    }
+
+    .gallery-grid-large {
         grid-template-columns: 1fr;
     }
 
-    .products-grid {
-        grid-template-columns: 1fr;
+    .gallery-card img {
+        height: 220px;
+    }
+
+    .featured-large-card img {
+        height: 240px;
+    }
+
+    .content-text {
+        padding: 1.5rem;
+        font-size: 1rem;
     }
 
     .cta-button {
-        padding: 12px 30px;
+        padding: 12px 28px;
         font-size: 0.95rem;
     }
-}
 
-@media (max-width: 480px) {
+    .contact-card {
+        padding: 1.5rem;
+    }
+}
     .logo {
         font-size: 1rem;
     }
