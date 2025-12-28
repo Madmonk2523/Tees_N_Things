@@ -343,6 +343,33 @@ body {
     margin-bottom: 3rem;
 }
 
+.featured-grid-large-single {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 3rem;
+}
+
+.featured-large-card-single {
+    width: 100%;
+    max-width: 600px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.12);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.featured-large-card-single:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+.featured-large-card-single img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    display: block;
+}
+
 .featured-large-card {
     border-radius: 12px;
     overflow: hidden;
