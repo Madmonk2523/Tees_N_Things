@@ -250,14 +250,9 @@ body {
 }
 
 .product-card h3 {
-    padding: 1.2rem 1.2rem 0.4rem;
+    padding: 1.2rem 1.2rem 1.2rem;
     color: var(--primary);
     font-size: 1.1rem;
-}
-
-.product-card p {
-    padding: 0 1.2rem 1.2rem;
-    color: #555;
 }
 
 /* ===== About Section ===== */
