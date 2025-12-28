@@ -338,9 +338,15 @@ body {
 
 .featured-grid-large {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 2rem;
     margin-bottom: 3rem;
+}
+
+@media (min-width: 768px) {
+    .featured-grid-large {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
 }
 
 .featured-grid-large-single {
