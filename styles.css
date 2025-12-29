@@ -26,6 +26,22 @@ body {
     background-color: var(--white);
 }
 
+/* ===== Image Optimizations ===== */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+img[loading="lazy"] {
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+img[loading="lazy"].loaded,
+img[loading="lazy"]:not([loading]) {
+    opacity: 1;
+}
+
 /* ===== Navigation ===== */
 .navbar {
     background: var(--primary);
@@ -79,6 +95,12 @@ body {
     background: none;
     border: none;
     padding: 0.4rem;
+    z-index: 1002;
+    transition: transform 0.3s ease;
+}
+
+.hamburger:active {
+    transform: scale(0.95);
 }
 
 .hamburger span {
@@ -156,6 +178,18 @@ body {
     border-radius: 999px;
     cursor: pointer;
     font-weight: 700;
+    text-decoration: none;
+    display: inline-block;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 107, 157, 0.4);
+}
+
+.cta-button:active {
+    transform: translateY(0);
 }
 
 .featured {
@@ -566,12 +600,12 @@ body {
 @media (max-width: 768px) {
     .hamburger {
         display: flex;
-        z-index: 100;
+        z-index: 1002;
     }
 
     .nav-menu {
-        position: absolute;
-        top: 100%;
+        position: fixed;
+        top: 60px;
         left: 0;
         right: 0;
         background: linear-gradient(135deg, var(--primary) 0%, #006b99 100%);
@@ -579,58 +613,94 @@ body {
         gap: 0;
         max-height: 0;
         overflow: hidden;
-        transition: max-height 0.4s ease;
+        transition: max-height 0.3s ease-in-out;
         padding: 0;
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-        z-index: 99;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+        z-index: 1001;
     }
 
     .nav-menu.active {
         max-height: 600px;
         padding: 0.5rem 0;
+        overflow-y: auto;
     }
 
     .nav-menu li {
         width: 100%;
+        opacity: 0;
+        transform: translateX(-20px);
+        animation: slideIn 0.3s forwards;
+    }
+
+    .nav-menu.active li:nth-child(1) { animation-delay: 0.05s; }
+    .nav-menu.active li:nth-child(2) { animation-delay: 0.1s; }
+    .nav-menu.active li:nth-child(3) { animation-delay: 0.15s; }
+    .nav-menu.active li:nth-child(4) { animation-delay: 0.2s; }
+    .nav-menu.active li:nth-child(5) { animation-delay: 0.25s; }
+    .nav-menu.active li:nth-child(6) { animation-delay: 0.3s; }
+    .nav-menu.active li:nth-child(7) { animation-delay: 0.35s; }
+    .nav-menu.active li:nth-child(8) { animation-delay: 0.4s; }
+    .nav-menu.active li:nth-child(9) { animation-delay: 0.45s; }
+    .nav-menu.active li:nth-child(10) { animation-delay: 0.5s; }
+
+    @keyframes slideIn {
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
     }
 
     .nav-menu a {
         display: block;
-        padding: 1.2rem 2rem;
+        padding: 1rem 2rem;
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        font-size: 1.05rem;
+        font-size: 1rem;
         text-align: left;
+        transition: all 0.2s ease;
     }
 
-    .nav-menu a:hover {
+    .nav-menu a:hover,
+    .nav-menu a:active {
         background-color: rgba(255, 255, 255, 0.15);
         border-bottom-color: var(--accent);
+        padding-left: 2.5rem;
     }
 
     .nav-container {
         flex-wrap: wrap;
         position: relative;
+        padding: 0 1rem;
     }
 
     .logo {
-        font-size: 0.9rem;
+        font-size: 0.85rem;
+        max-width: calc(100% - 60px);
     }
 
     .hero {
-        padding: 80px 1.5rem;
-        min-height: 350px;
+        padding: 60px 1.5rem;
+        min-height: 400px;
     }
 
     .hero h1 {
-        font-size: 2.2rem;
+        font-size: 2rem;
+        line-height: 1.2;
     }
 
     .tagline {
         font-size: 1.1rem;
+        margin-bottom: 0.8rem;
     }
 
     .location {
         font-size: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .cta-button {
+        padding: 14px 32px;
+        font-size: 1rem;
+        touch-action: manipulation;
     }
 
     .shop-gallery {
@@ -642,15 +712,18 @@ body {
     }
 
     .featured-products-section {
-        padding: 50px 1.5rem;
+        padding: 40px 1rem;
     }
 
     .featured-products-section h2 {
-        font-size: 2.2rem;
+        font-size: 2rem;
+        line-height: 1.3;
     }
 
     .section-intro {
-        font-size: 1.05rem;
+        font-size: 1rem;
+        line-height: 1.6;
+        padding: 0 0.5rem;
     }
 
     .featured-grid-large {
@@ -659,7 +732,29 @@ body {
     }
 
     .featured-large-card img {
-        height: 280px;
+        height: 250px;
+    }
+
+    .featured {
+        padding: 50px 1rem 20px;
+    }
+
+    .featured h2 {
+        font-size: 2rem;
+    }
+
+    .featured-grid {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+    }
+
+    .products-grid {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+    }
+
+    .product-card img {
+        height: 220px;
     }
 
     .about-section,
@@ -683,30 +778,106 @@ body {
 }
 
 @media (max-width: 480px) {
+    .navbar {
+        padding: 0.8rem 0;
+    }
+
     .logo {
-        font-size: 0.75rem;
+        font-size: 0.7rem;
+        letter-spacing: 0.5px;
+    }
+
+    .hamburger {
+        padding: 0.3rem;
+    }
+
+    .hamburger span {
+        width: 22px;
+        height: 3px;
+        margin: 4px 0;
+    }
+
+    .nav-menu.active {
+        max-height: 500px;
+    }
+
+    .nav-menu a {
+        padding: 0.9rem 1.5rem;
+        font-size: 0.95rem;
+    }
+
+    .hero {
+        padding: 50px 1rem;
+        min-height: 380px;
     }
 
     .hero h1 {
-        font-size: 1.8rem;
+        font-size: 1.6rem;
+        line-height: 1.3;
+        margin-bottom: 1rem;
     }
 
     .tagline {
         font-size: 1rem;
+        margin-bottom: 0.8rem;
     }
 
     .location {
-        font-size: 0.9rem;
+        font-size: 0.95rem;
+        margin-bottom: 1.5rem;
     }
 
-    .shop-gallery h2,
+    .cta-button {
+        padding: 12px 28px;
+        font-size: 0.95rem;
+        touch-action: manipulation;
+    }
+
+    .shop-section,
+    .about-section,
+    .contact-section,
+    .featured-products-section {
+        padding: 35px 1rem;
+    }
+
+    .shop-section h2,
+    .about-section h2,
+    .contact-section h2,
     .featured-products-section h2 {
-        font-size: 1.8rem;
+        font-size: 1.6rem;
+        line-height: 1.3;
     }
 
     .section-subtitle,
     .section-intro {
-        font-size: 0.95rem;
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+
+    .contact-form {
+        padding: 1.5rem;
+    }
+
+    .products-grid,
+    .featured-grid {
+        gap: 1rem;
+    }
+
+    .product-card {
+        border-radius: 8px;
+    }
+
+    .product-card img,
+    .featured-card img {
+        height: 200px;
+    }
+
+    .contact-card {
+        padding: 1.3rem;
+    }
+
+    .featured-large-card img {
+        height: 220px;
     }
 
     .gallery-grid-large {
@@ -714,85 +885,104 @@ body {
     }
 
     .gallery-card img {
-        height: 220px;
-    }
-
-    .featured-large-card img {
-        height: 240px;
+        height: 200px;
     }
 
     .content-text {
-        padding: 1.5rem;
-        font-size: 1rem;
-    }
-
-    .cta-button {
-        padding: 12px 28px;
+        padding: 1.3rem;
         font-size: 0.95rem;
+        line-height: 1.6;
     }
 
-    .contact-card {
-        padding: 1.5rem;
+    .footer {
+        padding: 2rem 1rem;
+    }
+
+    .footer p {
+        font-size: 0.85rem;
     }
 }
-    .logo {
-        font-size: 1rem;
-    }
 
-    .hamburger {
-        padding: 0.5rem;
+/* ===== Extra Small Devices ===== */
+@media (max-width: 360px) {
+    .logo {
+        font-size: 0.65rem;
     }
 
     .hamburger span {
         width: 20px;
-        height: 2.5px;
-    }
-
-    .nav-menu.active {
-        max-height: 250px;
-    }
-
-    .nav-menu a {
-        padding: 0.8rem 1.5rem;
-        font-size: 0.85rem;
     }
 
     .hero {
-        padding: 50px 1rem;
+        padding: 40px 0.8rem;
         min-height: 350px;
     }
 
     .hero h1 {
-        font-size: 1.5rem;
+        font-size: 1.4rem;
     }
 
     .tagline {
-        font-size: 0.95rem;
+        font-size: 0.9rem;
     }
 
+    .location {
+        font-size: 0.85rem;
+    }
+
+    .cta-button {
+        padding: 10px 24px;
+        font-size: 0.9rem;
+    }
+
+    .featured-products-section,
     .shop-section,
     .about-section,
     .contact-section {
-        padding: 40px 1rem;
+        padding: 30px 0.8rem;
     }
 
-    .contact-form {
-        padding: 1.5rem;
+    .featured-products-section h2,
+    .shop-section h2,
+    .about-section h2,
+    .contact-section h2 {
+        font-size: 1.4rem;
     }
 
-    .products-grid {
-        gap: 1rem;
+    .section-intro,
+    .section-subtitle {
+        font-size: 0.85rem;
     }
 
-    .product-card {
-        border-radius: 10px;
-    }
-
-    .product-card img {
-        height: 200px;
+    .content-text {
+        padding: 1rem;
+        font-size: 0.9rem;
     }
 
     .contact-card {
-        padding: 1.5rem;
+        padding: 1rem;
+    }
+}
+
+/* ===== Smooth Scrolling & Touch Improvements ===== */
+@media (hover: none) and (pointer: coarse) {
+    /* Touch device optimizations */
+    .nav-menu a,
+    .cta-button,
+    .hamburger {
+        -webkit-tap-highlight-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .nav-menu a {
+        min-height: 48px;
+        display: flex;
+        align-items: center;
+    }
+
+    .product-card,
+    .featured-card,
+    .gallery-card,
+    .featured-large-card {
+        -webkit-tap-highlight-color: transparent;
     }
 }
