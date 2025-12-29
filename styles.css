@@ -30,16 +30,24 @@ body {
 img {
     max-width: 100%;
     height: auto;
+    display: block;
 }
 
 img[loading="lazy"] {
-    opacity: 0;
-    transition: opacity 0.3s;
+    background: linear-gradient(to right, #f0f0f0 0%, #e0e0e0 50%, #f0f0f0 100%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
 }
 
-img[loading="lazy"].loaded,
-img[loading="lazy"]:not([loading]) {
-    opacity: 1;
+@keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+/* Remove shimmer once image loads */
+img[loading="lazy"].loaded {
+    animation: none;
+    background: none;
 }
 
 /* ===== Navigation ===== */
@@ -130,6 +138,7 @@ img[loading="lazy"]:not([loading]) {
         url('wideStoreImage.jpeg');
     background-size: cover;
     background-position: center;
+    background-attachment: scroll;
     color: var(--white);
     padding: 110px 1.5rem;
     text-align: center;
@@ -137,6 +146,7 @@ img[loading="lazy"]:not([loading]) {
     display: flex;
     align-items: center;
     justify-content: center;
+    will-change: auto;
 }
 
 .hero-content {
