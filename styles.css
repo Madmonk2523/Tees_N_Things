@@ -95,6 +95,13 @@ img[loading="lazy"].loaded {
     color: var(--accent);
 }
 
+/* Hide nav-menu on mobile by default */
+@media (max-width: 768px) {
+    .nav-menu {
+        display: none !important;
+    }
+}
+
 /* ===== Hamburger Menu ===== */
 .hamburger {
     display: none;
@@ -534,6 +541,14 @@ img[loading="lazy"].loaded {
     margin-bottom: 3rem;
 }
 
+.contact-subtitle {
+    text-align: center;
+    color: #4a4a4a;
+    margin-top: -1.5rem;
+    margin-bottom: 2.5rem;
+    font-size: 1.05rem;
+}
+
 .contact-content {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -557,6 +572,69 @@ img[loading="lazy"].loaded {
 }
 
 .contact-card p {
+    color: #2f4858;
+    line-height: 1.6;
+    font-weight: 500;
+}
+
+.contact-link {
+    color: var(--primary);
+    font-weight: 700;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 0.3rem;
+}
+
+.contact-link:hover {
+    color: #006b99;
+}
+
+.social-links {
+    text-align: center;
+    margin-top: 3.5rem;
+    padding-top: 2.5rem;
+    border-top: 2px solid #e8eef1;
+}
+
+.social-links h3 {
+    color: var(--primary);
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+}
+
+.social-grid {
+    display: flex;
+    justify-content: center;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+}
+
+.social-chip {
+    display: inline-block;
+    padding: 0.75rem 1.4rem;
+    border-radius: 999px;
+    color: var(--white);
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-decoration: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    min-width: 120px;
+    text-align: center;
+}
+
+.social-chip:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.social-chip:active {
+    transform: translateY(-1px);
+}
+
+.social-chip.facebook { background: linear-gradient(135deg, #1877f2, #0d5ac4); }
+.social-chip.instagram { background: linear-gradient(135deg, #fd5949, #d6249f); }
+.social-chip.tiktok { background: linear-gradient(135deg, #000000, #25f4ee); }
 
 
 .contact-form button {
@@ -614,6 +692,7 @@ img[loading="lazy"].loaded {
     }
 
     .nav-menu {
+        display: flex !important;
         position: fixed;
         top: 60px;
         left: 0;
@@ -784,6 +863,21 @@ img[loading="lazy"].loaded {
     .contact-content {
         grid-template-columns: 1fr;
         gap: 1.5rem;
+    }
+
+    .social-links {
+        margin-top: 2.5rem;
+        padding-top: 2rem;
+    }
+
+    .social-grid {
+        gap: 0.7rem;
+    }
+
+    .social-chip {
+        padding: 0.7rem 1.2rem;
+        font-size: 0.9rem;
+        min-width: 110px;
     }
 }
 
