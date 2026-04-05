@@ -77,6 +77,45 @@
         <h2 id="products">Wholesale Products</h2>
         <p class="section-subtitle">Tap or click any product to open a larger image view.</p>
 
+        <form class="wholesale-order-form" action="#" method="post" aria-label="Wholesale request form">
+            <h3>Wholesale Request Form</h3>
+            <p>Fill this out and we will connect it to email next.</p>
+
+            <div class="wholesale-form-grid">
+                <label>
+                    Name
+                    <input type="text" name="name" autocomplete="name" required>
+                </label>
+
+                <label>
+                    Email
+                    <input type="email" name="email" autocomplete="email" required>
+                </label>
+
+                <label>
+                    Phone Number
+                    <input type="tel" name="phone" autocomplete="tel" required>
+                </label>
+
+                <label>
+                    Product Number Wanted
+                    <input type="text" name="product" placeholder="Example: 041" required>
+                </label>
+
+                <label>
+                    How Many Dozens
+                    <input type="number" name="dozens" min="1" step="1" required>
+                </label>
+
+                <label class="full-width">
+                    Optional Question or Comment
+                    <textarea name="comment" rows="4" placeholder="Add any details here..."></textarea>
+                </label>
+            </div>
+
+            <button type="submit" class="cta-button">Submit Request</button>
+        </form>
+
         <div class="filter-toolbar" aria-label="Filter products by category">
             <button type="button" class="filter-chip active" data-filter="all">All</button>
             <button type="button" class="filter-chip" data-filter="bags">Bags</button>
@@ -208,15 +247,24 @@
             { code: '055', name: 'Post Magnet', price: 'Contact for pricing', category: 'other' },
             { code: '056', name: 'Sunset Opener', price: 'Contact for pricing', category: 'openers' },
             { code: '057', name: 'Guitar Turtle Mug', price: 'Contact for pricing', category: 'mugs' },
-            { code: '058', name: 'Turtle Jewelry Pan', price: 'Contact for pricing', category: 'plates-pans' }
+            { code: '058', name: 'Turtle Jewelry Pan', price: 'Contact for pricing', category: 'plates-pans' },
+            { code: '059', category: 'bags', image: 'WhatsApp Image 2026-04-04 at 4.32.17 PM.jpeg' },
+            { code: '060', category: 'bags', image: 'WhatsApp Image 2026-04-04 at 4.32.17 PM (1).jpeg' },
+            { code: '061', category: 'bags', image: 'WhatsApp Image 2026-04-04 at 4.32.17 PM (2).jpeg' },
+            { code: '062', category: 'bags', image: 'WhatsApp Image 2026-04-04 at 4.32.17 PM (3).jpeg' },
+            { code: '063', category: 'bags', image: 'WhatsApp Image 2026-04-04 at 4.32.17 PM (4).jpeg' },
+            { code: '064', category: 'bags', image: 'WhatsApp Image 2026-04-04 at 4.32.40 PM.jpeg' }
         ].map((item) => {
-            const priceWithDozen = item.price.toLowerCase().includes('per dozen')
-                ? item.price
-                : `${item.price} per dozen`;
+            const hasPrice = typeof item.price === 'string' && item.price.trim().length > 0;
+            const hasName = typeof item.name === 'string' && item.name.trim().length > 0;
+            const priceWithDozen = hasPrice
+                ? (item.price.toLowerCase().includes('per dozen') ? item.price : `${item.price} per dozen`)
+                : '';
 
             return {
                 ...item,
-                image: `${item.code}.jpeg`,
+                name: hasName ? item.name : '',
+                image: item.image || `${item.code}.jpeg`,
                 price: priceWithDozen
             };
         });
@@ -234,18 +282,20 @@
 
         function productCardTemplate(product) {
             const needsRetake = product.retake ? '<span class="retake-pill">Retake Photo</span>' : '';
+            const productName = product.name || 'Name pending';
+            const productPrice = product.price || 'Price pending';
 
             return `
                 <article class="product-card" data-category="${product.category}" data-code="${product.code}">
-                    <button type="button" class="product-card-button" aria-label="Open larger image for product ${product.code} ${product.name}">
+                    <button type="button" class="product-card-button" aria-label="Open larger image for product ${product.code}">
                         <div class="product-image-wrap">
-                            <img src="${product.image}" alt="Product ${product.code} - ${product.name}" loading="lazy" decoding="async">
+                            <img src="${product.image}" alt="Product ${product.code}" loading="lazy" decoding="async">
                             <span class="zoom-hint">View Larger</span>
                         </div>
                         <div class="product-body">
                             <p class="product-code">${product.code}</p>
-                            <h3>${product.name}</h3>
-                            <p class="product-price">${product.price}</p>
+                            <h3>${productName}</h3>
+                            <p class="product-price">${productPrice}</p>
                             ${needsRetake}
                         </div>
                     </button>
@@ -265,10 +315,10 @@
 
         function openModal(product) {
             modalImage.src = product.image;
-            modalImage.alt = `Product ${product.code} - ${product.name}`;
+            modalImage.alt = `Product ${product.code}`;
             modalCode.textContent = product.code;
-            modalName.textContent = product.name;
-            modalPrice.textContent = product.price;
+            modalName.textContent = product.name || 'Name pending';
+            modalPrice.textContent = product.price || 'Price pending';
             productModal.classList.add('open');
             productModal.setAttribute('aria-hidden', 'false');
             document.body.style.overflow = 'hidden';
