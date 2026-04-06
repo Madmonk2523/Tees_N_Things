@@ -97,15 +97,21 @@
                     <input type="tel" name="phone" autocomplete="tel" required>
                 </label>
 
-                <label>
-                    Product Number Wanted
-                    <input type="text" name="product" placeholder="Example: 041" required>
-                </label>
-
-                <label>
-                    How Many Dozens
-                    <input type="number" name="dozens" min="1" step="1" required>
-                </label>
+                <div class="wholesale-line-items full-width" id="wholesaleLineItems" aria-label="Products needed">
+                    <p class="line-items-title">Products Needed</p>
+                    <div class="line-item-row">
+                        <label>
+                            Product Number
+                            <input type="text" name="productCodes[]" placeholder="Example: 041" required>
+                        </label>
+                        <label>
+                            How Many Dozens
+                            <input type="number" name="dozens[]" min="1" step="1" required>
+                        </label>
+                        <button type="button" class="line-item-remove" aria-label="Remove product">Remove</button>
+                    </div>
+                    <button type="button" class="line-item-add" id="addLineItem">+ Add Another Product</button>
+                </div>
 
                 <label class="full-width">
                     Optional Question or Comment
@@ -200,14 +206,14 @@
             { code: '011', name: 'National Doll', price: '$48', category: 'dolls' },
             { code: '012', name: 'Pink Bus', price: '$50', category: 'other' },
             { code: '013', name: 'Heart', price: '$48', category: 'other' },
-            { code: '014', name: 'Keychain', price: '$36', category: 'keychains' },
-            { code: '015', name: 'Sandal Mug', price: '$48', category: 'mugs' },
+            { code: '014', name: 'Keychain', price: '$48', category: 'keychains', image: 'WhatsApp Image 2026-04-04 at 4.32.17 PM.jpeg' },
+            { code: '015', name: 'Magnet', price: '$48', category: 'other' },
             { code: '016', name: 'Flamingo Keychain', price: '$36', category: 'keychains' },
-            { code: '017', name: 'Flamingo Mug', price: '$48', category: 'mugs' },
+            { code: '017', name: 'Keychain', price: '$48', category: 'keychains' },
             { code: '018', name: 'Flamingo Mug', price: '$48', category: 'mugs' },
-            { code: '019', name: 'Provo Beach Bottle', price: '$50', category: 'other' },
-            { code: '020', name: 'Guitar', price: '$48 per dozen', category: 'other' },
-            { code: '021', name: 'Can Flag', price: '$48 per dozen', category: 'other' },
+            { code: '019', name: 'Flamingo Magnet', price: '$50', category: 'other' },
+            { code: '020', name: 'Beach Bottle', price: '$48 per dozen', category: 'other' },
+            { code: '021', name: 'Flag Magnet', price: '$48 per dozen', category: 'other' },
             { code: '022', name: 'Bike Beach', price: '$48', category: 'other' },
             { code: '023', name: 'Bike Sunset', price: '$48', category: 'other', retake: true },
             { code: '024', name: 'Fish Opener', price: '$48', category: 'openers' },
@@ -223,14 +229,14 @@
             { code: '034', name: 'Surf Board', price: '$48', category: 'other' },
             { code: '035', name: 'Cactus Plant', price: '$48', category: 'other' },
             { code: '036', name: 'License Plate', price: '$60', category: 'plates-pans' },
-            { code: '037', name: 'Jewel Pan', price: '$60', category: 'plates-pans' },
+            { code: '037', name: 'Flag Jewel Pan', price: '$60', category: 'plates-pans' },
             { code: '038', name: 'Beach Jewel Pan', price: '$60', category: 'plates-pans' },
             { code: '039', name: 'Sunset Jewel Pan', price: '$60', category: 'plates-pans' },
             { code: '040', name: 'Turtle Beach Pan', price: '$60', category: 'plates-pans' },
             { code: '041', name: 'Sunset Beach Bag', price: '$144 per dozen', category: 'bags' },
             { code: '042', name: 'Flamingo Beach Bag', price: '$144 per dozen', category: 'bags' },
             { code: '043', name: 'Tie Dye Beach Bag', price: '$144 per dozen', category: 'bags' },
-            { code: '044', name: 'Beach Bag', price: '$144 per dozen', category: 'bags' },
+            { code: '044', name: 'Beach Bag Wave', price: '$144 per dozen', category: 'bags' },
             { code: '045', name: 'TCI Flag Bag', price: '$144 per dozen', category: 'bags' },
             { code: '046', name: 'Turtles Bag', price: '$144 per dozen', category: 'bags' },
             { code: '047', name: 'Shot Glass Flag', price: '$60', category: 'other' },
@@ -239,18 +245,18 @@
             { code: '050', name: 'Keychain Flamingo', price: 'Contact for pricing', category: 'keychains' },
             { code: '051', name: 'Keychain Sandals', price: 'Contact for pricing', category: 'keychains' },
             { code: '052', name: 'Keychain Dolphin', price: 'Contact for pricing', category: 'keychains' },
-            { code: '053', name: 'Keychain Sandals', price: 'Contact for pricing', category: 'keychains' },
-            { code: '054', name: 'Tie Dye Turtle', price: 'Contact for pricing', category: 'other' },
-            { code: '055', name: 'Post Magnet', price: 'Contact for pricing', category: 'other' },
-            { code: '056', name: 'Sunset Opener', price: 'Contact for pricing', category: 'openers' },
-            { code: '057', name: 'Guitar Turtle Mug', price: 'Contact for pricing', category: 'mugs' },
-            { code: '058', name: 'Turtle Jewelry Pan', price: 'Contact for pricing', category: 'plates-pans' },
-            { code: '059', category: 'bags', image: 'WhatsApp Image 2026-04-04 at 4.32.17 PM.jpeg' },
-            { code: '060', category: 'bags', image: 'WhatsApp Image 2026-04-04 at 4.32.17 PM (1).jpeg' },
-            { code: '061', category: 'bags', image: 'WhatsApp Image 2026-04-04 at 4.32.17 PM (2).jpeg' },
-            { code: '062', category: 'bags', image: 'WhatsApp Image 2026-04-04 at 4.32.17 PM (3).jpeg' },
+            { code: '053', name: 'Keychain Sandals', price: '$36', category: 'keychains' },
+            { code: '054', name: 'Tie Dye Turtle', price: '$36', category: 'other' },
+            { code: '055', name: 'Post Magnet', price: '$48', category: 'other' },
+            { code: '056', name: 'Sunset Opener', price: '$48', category: 'openers' },
+            { code: '057', name: 'Turtle Magnet', price: '$36', category: 'other' },
+            { code: '058', name: 'Turtle Jewelry Pan', price: '$60', category: 'plates-pans' },
+            { code: '059', category: 'bags', image: '014.jpeg' },
+            { code: '060', name: 'Bike Turtle', price: '$48', category: 'bags', image: 'WhatsApp Image 2026-04-04 at 4.32.17 PM (1).jpeg' },
+            { code: '061', name: 'Sunset Opener', price: '$48', category: 'bags', image: 'WhatsApp Image 2026-04-04 at 4.32.17 PM (2).jpeg' },
+            { code: '062', name: 'Sunset Guitar', category: 'bags', image: 'WhatsApp Image 2026-04-04 at 4.32.17 PM (3).jpeg' },
             { code: '063', category: 'bags', image: 'WhatsApp Image 2026-04-04 at 4.32.17 PM (4).jpeg' },
-            { code: '064', category: 'bags', image: 'WhatsApp Image 2026-04-04 at 4.32.40 PM.jpeg' }
+            { code: '064', price: '$48', category: 'bags', image: 'WhatsApp Image 2026-04-04 at 4.32.40 PM.jpeg' }
         ].map((item) => {
             const hasPrice = typeof item.price === 'string' && item.price.trim().length > 0;
             const hasName = typeof item.name === 'string' && item.name.trim().length > 0;
@@ -363,6 +369,62 @@
             });
         }
 
+        function initializeWholesaleLineItems() {
+            const lineItemsContainer = document.getElementById('wholesaleLineItems');
+            const addLineItemButton = document.getElementById('addLineItem');
+
+            if (!lineItemsContainer || !addLineItemButton) {
+                return;
+            }
+
+            function updateRemoveButtons() {
+                const removeButtons = lineItemsContainer.querySelectorAll('.line-item-remove');
+                const hideRemove = removeButtons.length <= 1;
+                removeButtons.forEach((button) => {
+                    button.style.visibility = hideRemove ? 'hidden' : 'visible';
+                });
+            }
+
+            function buildLineItemRow() {
+                const row = document.createElement('div');
+                row.className = 'line-item-row';
+                row.innerHTML = `
+                    <label>
+                        Product Number
+                        <input type="text" name="productCodes[]" placeholder="Example: 041" required>
+                    </label>
+                    <label>
+                        How Many Dozens
+                        <input type="number" name="dozens[]" min="1" step="1" required>
+                    </label>
+                    <button type="button" class="line-item-remove" aria-label="Remove product">Remove</button>
+                `;
+                return row;
+            }
+
+            addLineItemButton.addEventListener('click', () => {
+                lineItemsContainer.insertBefore(buildLineItemRow(), addLineItemButton);
+                updateRemoveButtons();
+            });
+
+            lineItemsContainer.addEventListener('click', (event) => {
+                const removeButton = event.target.closest('.line-item-remove');
+                if (!removeButton) {
+                    return;
+                }
+
+                const rows = lineItemsContainer.querySelectorAll('.line-item-row');
+                if (rows.length <= 1) {
+                    return;
+                }
+
+                removeButton.closest('.line-item-row')?.remove();
+                updateRemoveButtons();
+            });
+
+            updateRemoveButtons();
+        }
+
         // Hamburger menu toggle
         const hamburger = document.getElementById('hamburger');
         const navMenu = document.getElementById('navMenu');
@@ -419,6 +481,7 @@
         });
 
         document.addEventListener('DOMContentLoaded', () => {
+            initializeWholesaleLineItems();
             initializeFilterButtons();
             renderProducts();
         });
