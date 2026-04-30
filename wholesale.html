@@ -122,18 +122,7 @@
             <button type="submit" class="cta-button">Submit Request</button>
         </form>
 
-        <div class="filter-toolbar" aria-label="Filter products by category">
-            <button type="button" class="filter-chip active" data-filter="all">All</button>
-            <button type="button" class="filter-chip" data-filter="bags">Bags</button>
-            <button type="button" class="filter-chip" data-filter="keychains">Keychains</button>
-            <button type="button" class="filter-chip" data-filter="mugs">Mugs</button>
-            <button type="button" class="filter-chip" data-filter="openers">Openers</button>
-            <button type="button" class="filter-chip" data-filter="plates-pans">Plates &amp; Pans</button>
-            <button type="button" class="filter-chip" data-filter="dolls">Dolls</button>
-            <button type="button" class="filter-chip" data-filter="other">Other</button>
-        </div>
-
-        <div class="products-grid wholesale-grid" id="wholesaleGrid" aria-live="polite"></div>
+        <ol class="wholesale-list" id="wholesaleList" aria-live="polite"></ol>
 
     </section>
 
@@ -172,7 +161,7 @@
                 <a href="wholesale.html">Buy from our wholesale store</a>
                 <a href="index.html#shop">Shop</a>
                 <a href="index.html#gifts">Gifts</a>
-                <a href="index.html#bags">Bags & Mugs</a>
+                <a href="index.html#bags">Bags & Magnets</a>
                 <a href="index.html#dogtreats">Dog Treats</a>
                 <a href="index.html#about">About</a>
             </div>
@@ -199,7 +188,7 @@
             { code: '004', name: 'Surf Board Pole', price: '$50', category: 'other' },
             { code: '005', name: 'Turtle Pole', price: '$50', category: 'other' },
             { code: '006', name: 'Blue Turks', price: '$48', category: 'other' },
-            { code: '007', name: 'Turks Flag', price: '$48', category: 'other', retake: true },
+            { code: '007', name: 'Turks Flag', price: '$48', category: 'other' },
             { code: '008', name: 'Flamingo Opener / Flag', price: '$50', category: 'openers' },
             { code: '009', name: 'National Doll', price: '$48', category: 'dolls' },
             { code: '010', name: 'National Doll', price: '$48', category: 'dolls' },
@@ -210,21 +199,21 @@
             { code: '015', name: 'Magnet', price: '$48', category: 'other' },
             { code: '016', name: 'Flamingo Keychain', price: '$36', category: 'keychains' },
             { code: '017', name: 'Keychain', price: '$48', category: 'keychains' },
-            { code: '018', name: 'Flamingo Mug', price: '$48', category: 'mugs' },
+            { code: '018', name: 'Flamingo Magnet', price: '$48', category: 'other' },
             { code: '019', name: 'Flamingo Magnet', price: '$50', category: 'other' },
             { code: '020', name: 'Beach Bottle', price: '$48 per dozen', category: 'other' },
             { code: '021', name: 'Flag Magnet', price: '$48 per dozen', category: 'other' },
             { code: '022', name: 'Bike Beach', price: '$48', category: 'other' },
-            { code: '023', name: 'Bike Sunset', price: '$48', category: 'other', retake: true },
+            { code: '023', name: 'Bike Sunset', price: '$48', category: 'other' },
             { code: '024', name: 'Fish Opener', price: '$48', category: 'openers' },
-            { code: '025', name: 'Fish Opener', price: '$48', category: 'openers', retake: true },
-            { code: '026', name: 'Fish Opener', price: '$48', category: 'openers', retake: true },
+            { code: '025', name: 'Fish Opener', price: '$48', category: 'openers' },
+            { code: '026', name: 'Fish Opener', price: '$48', category: 'openers' },
             { code: '027', name: 'Fish Opener', price: '$48', category: 'openers' },
             { code: '028', name: 'Rast Magnet', price: '$48', category: 'other' },
-            { code: '029', name: 'Sunglasses Mug', price: '$48', category: 'mugs' },
+            { code: '029', name: 'Sunglasses Magnet', price: '$48', category: 'other' },
             { code: '030', name: 'Island Opener', price: '$48', category: 'openers' },
             { code: '031', name: 'Gecko', price: '$48', category: 'other' },
-            { code: '032', name: 'Folk Book Mug', price: '$48', category: 'mugs' },
+            { code: '032', name: 'Folk Book Magnet', price: '$48', category: 'other' },
             { code: '033', name: 'Junkanoo', price: '$36', category: 'other' },
             { code: '034', name: 'Surf Board', price: '$48', category: 'other' },
             { code: '035', name: 'Cactus Plant', price: '$48', category: 'other' },
@@ -255,8 +244,22 @@
             { code: '060', name: 'Bike Turtle', price: '$48', category: 'bags', image: 'WhatsApp Image 2026-04-04 at 4.32.17 PM (1).jpeg' },
             { code: '061', name: 'Sunset Opener', price: '$48', category: 'bags', image: 'WhatsApp Image 2026-04-04 at 4.32.17 PM (2).jpeg' },
             { code: '062', name: 'Sunset Guitar', category: 'bags', image: 'WhatsApp Image 2026-04-04 at 4.32.17 PM (3).jpeg' },
-            { code: '063', category: 'bags', image: 'WhatsApp Image 2026-04-04 at 4.32.17 PM (4).jpeg' },
-            { code: '064', price: '$48', category: 'bags', image: 'WhatsApp Image 2026-04-04 at 4.32.40 PM.jpeg' }
+            { code: '063', name: 'Turks License Plate', price: '$60', category: 'plates-pans', image: 'Screenshot 2026-04-30 104447.png' },
+            { code: '064', price: '$48', category: 'bags', image: 'WhatsApp Image 2026-04-04 at 4.32.40 PM.jpeg' },
+            { code: '065', name: "Life's a Beach Magnet", price: '$48', category: 'other', image: 'WhatsApp Image 2026-04-18 at 10.14.39 AM.jpeg' },
+            { code: '066', name: 'Life is Better at the Beach', price: '$48', category: 'other', image: 'WhatsApp Image 2026-04-18 at 10.14.52 AM.jpeg' },
+            { code: '067', price: '$48', category: 'other', image: 'WhatsApp Image 2026-04-18 at 10.18.20 AM.jpeg' },
+            { code: '068', price: '$48', category: 'other', image: 'WhatsApp Image 2026-04-18 at 10.21.55 AM.jpeg' },
+            { code: '069', price: '$48', category: 'other', image: 'WhatsApp Image 2026-04-18 at 10.23.32 AM.jpeg' },
+            { code: '070', price: '$48', category: 'other', image: 'WhatsApp Image 2026-04-18 at 10.23.52 AM.jpeg' },
+            { code: '071', price: '$48', category: 'other', image: 'WhatsApp Image 2026-04-18 at 10.27.16 AM.jpeg' },
+            { code: '072', price: '$48', category: 'other', image: 'WhatsApp Image 2026-04-18 at 10.31.48 AM.jpeg' },
+            { code: '073', name: 'Red Turks Bag (Not available as of now)', price: '$144', category: 'bags', image: 'WhatsApp Image 2026-04-18 at 10.29.30 AM.jpeg' },
+            { code: '074', name: 'Green Turks Bag', price: '$144', category: 'bags', image: 'WhatsApp Image 2026-04-18 at 10.29.31 AM.jpeg' },
+            { code: '075', name: 'Blue Turks Bag', price: '$144', category: 'bags', image: 'WhatsApp Image 2026-04-18 at 10.29.31 AM (1).jpeg' },
+            { code: '076', name: 'Multi Color Turks Bag', price: '$144', category: 'bags', image: 'WhatsApp Image 2026-04-18 at 10.29.31 AM (2).jpeg' },
+            { code: '077', name: 'Turks Sunset Magnet', price: '$48', category: 'other', image: 'WhatsApp Image 2026-04-18 at 10.28.45 AM.jpeg' },
+            { code: '078', name: 'A Little Pot Turks Magnet', price: '$48', category: 'other', image: 'WhatsApp Image 2026-04-12 at 12.55.53 PM.jpeg' }
         ].map((item) => {
             const hasPrice = typeof item.price === 'string' && item.price.trim().length > 0;
             const hasName = typeof item.name === 'string' && item.name.trim().length > 0;
@@ -272,8 +275,7 @@
             };
         });
 
-        const filterButtons = document.querySelectorAll('.filter-chip');
-        const wholesaleGrid = document.getElementById('wholesaleGrid');
+        const wholesaleList = document.getElementById('wholesaleList');
         const productModal = document.getElementById('productModal');
         const modalImage = document.getElementById('modalImage');
         const modalCode = document.getElementById('modalCode');
@@ -281,39 +283,25 @@
         const modalPrice = document.getElementById('modalPrice');
         const modalClose = document.getElementById('modalClose');
 
-        let activeFilter = 'all';
-
-        function productCardTemplate(product) {
-            const needsRetake = product.retake ? '<span class="retake-pill">Retake Photo</span>' : '';
+        function wholesaleListItemTemplate(product) {
             const productName = product.name || 'Name pending';
             const productPrice = product.price || 'Price pending';
 
             return `
-                <article class="product-card" data-category="${product.category}" data-code="${product.code}">
-                    <button type="button" class="product-card-button" aria-label="Open larger image for product ${product.code}">
-                        <div class="product-image-wrap">
-                            <img src="${product.image}" alt="Product ${product.code}" loading="lazy" decoding="async">
-                            <span class="zoom-hint">View Larger</span>
-                        </div>
-                        <div class="product-body">
-                            <p class="product-code">${product.code}</p>
-                            <h3>${productName}</h3>
-                            <p class="product-price">${productPrice}</p>
-                            ${needsRetake}
-                        </div>
-                    </button>
-                </article>
+                <li class="wholesale-list-item" data-code="${product.code}">
+                    <div class="wholesale-list-main">
+                        <p class="wholesale-list-code">${product.code}</p>
+                        <h3>${productName}</h3>
+                        <p class="product-price">${productPrice}</p>
+                    </div>
+                    <button type="button" class="wholesale-view-photo" data-code="${product.code}" aria-label="Open photo for product ${product.code}">View Photo</button>
+                </li>
             `;
         }
 
         function renderProducts() {
-            const visibleProducts = activeFilter === 'all'
-                ? products
-                : products.filter(product => product.category === activeFilter);
-
-            wholesaleGrid.innerHTML = visibleProducts.map(productCardTemplate).join('');
-            bindCardClicks();
-            initLazyLoadedImageClasses();
+            wholesaleList.innerHTML = products.map(wholesaleListItemTemplate).join('');
+            bindListClicks();
         }
 
         function openModal(product) {
@@ -333,38 +321,14 @@
             document.body.style.overflow = '';
         }
 
-        function bindCardClicks() {
-            document.querySelectorAll('.product-card').forEach(card => {
-                card.addEventListener('click', () => {
-                    const code = card.getAttribute('data-code');
+        function bindListClicks() {
+            document.querySelectorAll('.wholesale-view-photo').forEach(button => {
+                button.addEventListener('click', () => {
+                    const code = button.getAttribute('data-code');
                     const selectedProduct = products.find(product => product.code === code);
                     if (selectedProduct) {
                         openModal(selectedProduct);
                     }
-                });
-            });
-        }
-
-        function initLazyLoadedImageClasses() {
-            const lazyImages = document.querySelectorAll('img[loading="lazy"]');
-            lazyImages.forEach(img => {
-                if (img.complete) {
-                    img.classList.add('loaded');
-                } else {
-                    img.addEventListener('load', () => {
-                        img.classList.add('loaded');
-                    }, { once: true });
-                }
-            });
-        }
-
-        function initializeFilterButtons() {
-            filterButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    activeFilter = button.getAttribute('data-filter');
-                    filterButtons.forEach(chip => chip.classList.remove('active'));
-                    button.classList.add('active');
-                    renderProducts();
                 });
             });
         }
@@ -482,7 +446,6 @@
 
         document.addEventListener('DOMContentLoaded', () => {
             initializeWholesaleLineItems();
-            initializeFilterButtons();
             renderProducts();
         });
     </script>
