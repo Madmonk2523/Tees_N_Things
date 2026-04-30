@@ -122,7 +122,7 @@
             <button type="submit" class="cta-button">Submit Request</button>
         </form>
 
-        <ol class="wholesale-list" id="wholesaleList" aria-live="polite"></ol>
+        <div class="products-grid wholesale-grid" id="wholesaleList" aria-live="polite"></div>
 
     </section>
 
@@ -288,14 +288,19 @@
             const productPrice = product.price || 'Price pending';
 
             return `
-                <li class="wholesale-list-item" data-code="${product.code}">
-                    <div class="wholesale-list-main">
-                        <p class="wholesale-list-code">${product.code}</p>
-                        <h3>${productName}</h3>
-                        <p class="product-price">${productPrice}</p>
-                    </div>
-                    <button type="button" class="wholesale-view-photo" data-code="${product.code}" aria-label="Open photo for product ${product.code}">View Photo</button>
-                </li>
+                <div class="product-card" data-code="${product.code}">
+                    <button type="button" class="product-card-button wholesale-view-photo" data-code="${product.code}" aria-label="Open photo for product ${product.code}">
+                        <div class="product-image-wrap">
+                            <img src="${product.image}" alt="${productName}" loading="lazy">
+                            <span class="zoom-hint">🔍 Tap to enlarge</span>
+                        </div>
+                        <div class="product-body">
+                            <p class="product-code">${product.code}</p>
+                            <h3>${productName}</h3>
+                            <p class="product-price">${productPrice}</p>
+                        </div>
+                    </button>
+                </div>
             `;
         }
 
@@ -303,6 +308,7 @@
             wholesaleList.innerHTML = products.map(wholesaleListItemTemplate).join('');
             bindListClicks();
         }
+
 
         function openModal(product) {
             modalImage.src = product.image;
@@ -323,7 +329,8 @@
 
         function bindListClicks() {
             document.querySelectorAll('.wholesale-view-photo').forEach(button => {
-                button.addEventListener('click', () => {
+                button.addEventListener('click', (e) => {
+                    e.preventDefault();
                     const code = button.getAttribute('data-code');
                     const selectedProduct = products.find(product => product.code === code);
                     if (selectedProduct) {
