@@ -529,7 +529,7 @@ img[loading="lazy"].loaded {
     font-weight: 700;
     padding: 0.58rem 0.82rem;
     cursor: pointer;
-    white-space: nowrap;
+    white-space: normal;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
